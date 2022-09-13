@@ -27,7 +27,6 @@ const action: launcher.Action = async (event, pluginId) => {
     if (!wrapper) {
       return event;
     }
-    const width = wrapper.clientWidth;
 
     //@ts-ignore
     wrapper.classList.remove(...wrapper.classList);
@@ -36,7 +35,7 @@ const action: launcher.Action = async (event, pluginId) => {
 
     const initialValue = storedData ? JSON.parse(storedData) : getInitialTagData();
 
-    createRoot(wrapper).render(<App {...{ condition, initialValue, width }} />);
+    createRoot(wrapper).render(<App {...{ fieldId, initialValue }} />);
   }
 
   return event;

@@ -3,15 +3,19 @@ import { Chip } from '@mui/material';
 import React, { FCX } from 'react';
 
 type Props = {
-  condition: kintone.plugin.Condition;
+  fieldId: string | null;
   initialValue: kintone.plugin.TagData;
-  width?: number;
 };
 
-const Component: FCX<Props> = ({ initialValue, className, width }) => (
+const Component: FCX<Props> = ({ fieldId, initialValue, className }) => (
   <div className={className}>
     {initialValue.tags.map((tag, i) => (
-      <Chip key={`${i}_${tag.value}`} color='primary' variant='outlined' label={tag.value} />
+      <a
+        key={`${i}_${tag.value}`}
+        href={`${location.pathname.replace('show', '')}?q=f${fieldId} like "${tag.value}"`}
+      >
+        <Chip color='primary' variant='outlined' label={tag.value} />
+      </a>
     ))}
   </div>
 );
@@ -21,6 +25,10 @@ const StyledComponent = styled(Component)`
   margin-top: 0.5rem;
   flex-wrap: wrap;
   gap: 0.5rem;
+
+  > a > div {
+    cursor: pointer;
+  }
 `;
 
 export default StyledComponent;
