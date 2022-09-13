@@ -2,6 +2,21 @@
 # yarn lockfile v1
 
 
+"@actions/core@^1.8.2":
+  version "1.9.1"
+  resolved "https://registry.yarnpkg.com/@actions/core/-/core-1.9.1.tgz#97c0201b1f9856df4f7c3a375cdcdb0c2a2f750b"
+  integrity sha512-5ad+U2YGrmmiw6du20AQW5XuWo7UKN2052FjSV7MX+Wfjf8sCqcsZe62NfgHys4QI4/Y+vQvLKYL8jWtA1ZBTA==
+  dependencies:
+    "@actions/http-client" "^2.0.1"
+    uuid "^8.3.2"
+
+"@actions/http-client@^2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@actions/http-client/-/http-client-2.0.1.tgz#873f4ca98fe32f6839462a6f046332677322f99c"
+  integrity sha512-PIXiMVtz6VvyaRsGY268qvj57hXQEpsYogYOu2nrQhlf+XCGmZstmuZBbAybUl1nQGnvS1k1eEsQ69ZoD7xlSw==
+  dependencies:
+    tunnel "^0.0.6"
+
 "@babel/code-frame@^7.0.0", "@babel/code-frame@^7.16.7":
   version "7.16.7"
   resolved "https://registry.npmjs.org/@babel/code-frame/-/code-frame-7.16.7.tgz"
@@ -120,6 +135,17 @@
     "@emotion/utils" "^1.2.0"
     "@emotion/weak-memoize" "^0.3.0"
     stylis "4.0.13"
+
+"@emotion/css@^11.10.0":
+  version "11.10.0"
+  resolved "https://registry.yarnpkg.com/@emotion/css/-/css-11.10.0.tgz#270b4fdf2419e59cb07081d0e9f7940d88b8b443"
+  integrity sha512-dH9f+kSCucc8ilMg0MUA1AemabcyzYpe5EKX24F528PJjD7HyIY/VBNJHxfUdc8l400h2ncAjR6yEDu+DBj2cg==
+  dependencies:
+    "@emotion/babel-plugin" "^11.10.0"
+    "@emotion/cache" "^11.10.0"
+    "@emotion/serialize" "^1.1.0"
+    "@emotion/sheet" "^1.2.0"
+    "@emotion/utils" "^1.2.0"
 
 "@emotion/hash@^0.9.0":
   version "0.9.0"
@@ -305,6 +331,15 @@
     lodash "^4.17.21"
     prettier "^2.7.1"
 
+"@kintone/kintone-ui-component@^0.9.1":
+  version "0.9.1"
+  resolved "https://registry.yarnpkg.com/@kintone/kintone-ui-component/-/kintone-ui-component-0.9.1.tgz#75f0e5b8ce9579ecbab63aa84d88ae0d44338268"
+  integrity sha512-W0lTxTg4ABFiB0/L0z0J2E8De02HXFQtoUQ1eYrA6jFSb3YC8YP5vO483UzOgAFWoJlIHfpQYlFz8fs0Zmz9TQ==
+  dependencies:
+    "@actions/core" "^1.8.2"
+    "@mdi/js" "3.6.95"
+    "@mdi/light-js" "0.2.63"
+
 "@kintone/plugin-manifest-validator@^7.0.5":
   version "7.0.5"
   resolved "https://registry.npmjs.org/@kintone/plugin-manifest-validator/-/plugin-manifest-validator-7.0.5.tgz"
@@ -372,6 +407,16 @@
     "@kintone/dts-gen" "^6.1.8"
     "@kintone/rest-api-client" "^3.1.10"
     "@lb-ribbit/kintone-secrets" "^0.2.1"
+
+"@mdi/js@3.6.95":
+  version "3.6.95"
+  resolved "https://registry.yarnpkg.com/@mdi/js/-/js-3.6.95.tgz#0a1e599680d241a2e77635c601fba25a44a635a0"
+  integrity sha512-9ICUom79Gw28Q8Cp6CX0VBd/Zy7NtIZrNolqIoYoKeuQmROhJ+1U54cxTuaGYHx+z62FIdx98IL3buMFAKwA/A==
+
+"@mdi/light-js@0.2.63":
+  version "0.2.63"
+  resolved "https://registry.yarnpkg.com/@mdi/light-js/-/light-js-0.2.63.tgz#96682ef162c79d328652a3b3c6799137289d30ac"
+  integrity sha512-+SUtJIOxvEy6DiVq0wTRPIzVuoPB5fhnubmzaN7e2ew0v3/nvnpC4mqbGCjiTK0diVd3+zvhEQHZzPDErGb1fg==
 
 "@mui/base@5.0.0-alpha.96":
   version "5.0.0-alpha.96"
@@ -4126,6 +4171,11 @@ tsutils@^3.21.0:
   dependencies:
     tslib "^1.8.1"
 
+tunnel@^0.0.6:
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/tunnel/-/tunnel-0.0.6.tgz#72f1314b34a5b192db012324df2cc587ca47f92c"
+  integrity sha512-1h/Lnq9yajKY2PEbBadPXj3VxsDDu844OnaAo52UVmIzIvwwtBPIuNvkjuzBlTWpfJyUbG3ez0KSBibQkj4ojg==
+
 type-check@^0.4.0, type-check@~0.4.0:
   version "0.4.0"
   resolved "https://registry.npmjs.org/type-check/-/type-check-0.4.0.tgz"
@@ -4197,6 +4247,11 @@ util-deprecate@^1.0.1:
   version "1.0.2"
   resolved "https://registry.npmjs.org/util-deprecate/-/util-deprecate-1.0.2.tgz"
   integrity sha1-RQ1Nyfpw3nMnYvvS1KKJgUGaDM8=
+
+uuid@^8.3.2:
+  version "8.3.2"
+  resolved "https://registry.yarnpkg.com/uuid/-/uuid-8.3.2.tgz#80d5b5ced271bb9af6c445f21a1a04c606cefbe2"
+  integrity sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==
 
 v8-compile-cache-lib@^3.0.1:
   version "3.0.1"

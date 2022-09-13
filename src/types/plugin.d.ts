@@ -6,6 +6,10 @@ declare namespace kintone {
     };
 
     /** プラグインの制御単位の設定情報🔌 */
-    type Condition = { field: string };
+    type Condition = { targetField: string; configField: string; hideConfigField: boolean };
+
+    type TagData = {
+      tags: { value: string }[];
+    };
   }
 }
