@@ -14,3 +14,14 @@ export const appFieldsState = selector<kx.FieldProperty[]>({
     return values.sort((a, b) => a.label.localeCompare(b.label, 'ja'));
   },
 });
+
+export const textFieldsState = selector<kx.FieldProperty[]>({
+  key: `${PREFIX}textFieldsState`,
+  get: async ({ get }) => {
+    const allFields = get(appFieldsState);
+
+    return allFields.filter(
+      (field) => field.type === 'SINGLE_LINE_TEXT' || field.type === 'MULTI_LINE_TEXT'
+    );
+  },
+});

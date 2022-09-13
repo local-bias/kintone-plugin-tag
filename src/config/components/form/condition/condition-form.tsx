@@ -5,7 +5,7 @@ import { Autocomplete, TextField } from '@mui/material';
 import produce from 'immer';
 
 import { kx } from '@type/kintone.api';
-import { appFieldsState } from '../../../states/kintone';
+import { textFieldsState } from '../../../states/kintone';
 import { storageState } from '../../../states/plugin';
 
 import OptionsForm from './form-options';
@@ -13,7 +13,7 @@ import OptionsForm from './form-options';
 type ContainerProps = { condition: kintone.plugin.Condition; index: number };
 
 const Component: FCX<ContainerProps> = ({ className, condition, index }) => {
-  const appFields = useRecoilValue(appFieldsState);
+  const appFields = useRecoilValue(textFieldsState);
 
   const onTargetFieldChange = useRecoilCallback(
     ({ set }) =>
