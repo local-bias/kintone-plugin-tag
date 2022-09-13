@@ -164,6 +164,18 @@ export const omitFieldProperties = (
   return filterFieldProperties(properties, (property) => !omittingTypes.includes(property.type));
 };
 
+export const getAppViews = async () => {
+  const app = getAppId();
+
+  if (!app) {
+    throw new Error('アプリのフィールド情報が取得できませんでした');
+  }
+
+  const { views } = await kintoneClient.app.getViews({ app });
+
+  return views;
+};
+
 /** 対象レコードの各フィールドから、指定文字列に一致するフィールドが１つでもあればTrueを返します */
 export const someRecord = (record: kx.RecordData, searchValue: string): boolean => {
   return Object.values(record).some((field) => someFieldValue(field, searchValue));

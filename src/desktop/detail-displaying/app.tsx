@@ -4,15 +4,18 @@ import React, { FCX } from 'react';
 
 type Props = {
   fieldId: string | null;
+  viewId: string;
   initialValue: kintone.plugin.TagData;
 };
 
-const Component: FCX<Props> = ({ fieldId, initialValue, className }) => (
+const Component: FCX<Props> = ({ fieldId, initialValue, className, viewId }) => (
   <div className={className}>
     {initialValue.tags.map((tag, i) => (
       <a
         key={`${i}_${tag.value}`}
-        href={`${location.pathname.replace('show', '')}?q=f${fieldId} like "${tag.value}"`}
+        href={`${location.pathname.replace('show', '')}${
+          viewId ? `?view=${viewId}&` : '?'
+        }q=f${fieldId} like "${tag.value}"`}
       >
         <Chip color='primary' variant='outlined' label={tag.value} />
       </a>

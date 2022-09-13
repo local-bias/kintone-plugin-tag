@@ -1,7 +1,7 @@
-import React, { FCX } from 'react';
+import React, { FCX, Suspense } from 'react';
 import { useRecoilCallback, useRecoilValue } from 'recoil';
 import styled from '@emotion/styled';
-import { Autocomplete, TextField } from '@mui/material';
+import { Autocomplete, Skeleton, TextField } from '@mui/material';
 import produce from 'immer';
 
 import { kx } from '@type/kintone.api';
@@ -9,6 +9,7 @@ import { textFieldsState } from '../../../states/kintone';
 import { storageState } from '../../../states/plugin';
 
 import OptionsForm from './form-options';
+import ViewIdForm from './form-view-id';
 
 type ContainerProps = { condition: kintone.plugin.Condition; index: number };
 
@@ -72,7 +73,14 @@ const Component: FCX<ContainerProps> = ({ className, condition, index }) => {
             <TextField {...params} label='対象フィールド' variant='outlined' color='primary' />
           )}
         />
-        <small style={{ color: '#fa3' }}>タグの区切りを厳格に管理するために必要となります</small>
+        <small>タグの区切りを厳格に管理するために必要となります</small>
+      </div>
+      <div>
+        <h3>タグクリック時に表示する一覧</h3>
+        <Suspense fallback={<Skeleton height={24} />}>
+          <ViewIdForm conditionIndex={index} />
+        </Suspense>
+        <small>対象の一覧が選択肢に存在しない場合は、一度アプリを更新してください。</small>
       </div>
       <OptionsForm condition={condition} index={index} />
     </div>
@@ -89,6 +97,10 @@ const StyledComponent = styled(Component)`
       font-weight: 500;
       margin-bottom: 16px;
     }
+  }
+  small {
+    opacity: 0.7;
+    color: #f70;
   }
 `;
 

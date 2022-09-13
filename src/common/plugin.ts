@@ -40,5 +40,6 @@ const createConfig = (): kintone.plugin.Storage => ({
 export const getNewCondition = (): kintone.plugin.Condition => ({
   targetField: '',
   configField: '',
+  targetViewId: '',
   hideConfigField: true,
 });

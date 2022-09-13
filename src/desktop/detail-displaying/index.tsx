@@ -1,12 +1,10 @@
 import React from 'react';
 import { restoreStorage } from '@common/plugin';
 import { getMetaFieldId_UNSTABLE } from '@lb-ribbit/kintone-secrets';
-import { css } from '@emotion/css';
 
 import App from './app';
 import { getInitialTagData } from '../action';
 import { createRoot } from 'react-dom/client';
-import { isMobile } from '@lb-ribbit/kintone-xapp';
 
 const events: launcher.Events = ['app.record.detail.show'];
 
@@ -35,7 +33,9 @@ const action: launcher.Action = async (event, pluginId) => {
 
     const initialValue = storedData ? JSON.parse(storedData) : getInitialTagData();
 
-    createRoot(wrapper).render(<App {...{ fieldId, initialValue }} />);
+    const viewId = condition.targetViewId;
+
+    createRoot(wrapper).render(<App {...{ fieldId, viewId, initialValue }} />);
   }
 
   return event;
