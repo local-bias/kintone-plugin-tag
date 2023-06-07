@@ -11,6 +11,7 @@ declare namespace kintone {
       targetField: string;
       configField: string;
       hideConfigField: boolean;
+      wordCloudViewId: string;
     };
 
     type TagData = {
