@@ -1,10 +1,10 @@
 import { Button } from '@mui/material';
 import React, { ChangeEventHandler, FCX, KeyboardEventHandler, useState } from 'react';
-import { KintoneInput } from '@common/components/kintone-input';
+import { KintoneInput } from '@/common/components/kintone-input';
 import styled from '@emotion/styled';
 import { useRecoilCallback } from 'recoil';
 import { tagDataState } from '../states/plugin';
-import produce from 'immer';
+import { produce } from 'immer';
 import AddIcon from '@mui/icons-material/Add';
 
 type Props = { width: number };

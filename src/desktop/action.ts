@@ -1,4 +1,4 @@
-import produce from 'immer';
+import { produce } from 'immer';
 
 export const getInitialTagData = (): kintone.plugin.TagData => ({ tags: [] });
 

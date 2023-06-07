@@ -1,5 +1,5 @@
 import { FormControlLabel, Switch } from '@mui/material';
-import produce from 'immer';
+import { produce } from 'immer';
 import React, { FC } from 'react';
 import { useRecoilCallback } from 'recoil';
 import { storageState } from '../../../states/plugin';

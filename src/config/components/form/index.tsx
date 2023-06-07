@@ -5,7 +5,7 @@ import styled from '@emotion/styled';
 import { storageState } from '../../states/plugin';
 import ConditionAdditionButton from './condition-addition-button';
 import Condition from './condition';
-import { Loading } from '@common/components/loading';
+import { Loading } from '@/common/components/loading';
 
 type Props = Readonly<{
   storage: kintone.plugin.Storage | null;

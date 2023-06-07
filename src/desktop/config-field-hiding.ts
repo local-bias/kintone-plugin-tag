@@ -1,4 +1,4 @@
-import { restoreStorage } from '@common/plugin';
+import { restoreStorage } from '@/common/plugin';
 import { setFieldShown } from '@lb-ribbit/kintone-xapp';
 
 const events: launcher.Events = [

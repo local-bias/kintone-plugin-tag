@@ -13,7 +13,7 @@
     "jsx": "react",
     "strict": true,
     "paths": {
-      "@common/*": ["./src/common/*"],
+      "@/*": ["./src/*"],
       "@type/*": ["./src/types/*"]
     }
   },

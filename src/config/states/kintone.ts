@@ -1,5 +1,5 @@
 import { selector } from 'recoil';
-import { getAppViews, getUserDefinedFields } from '@common/kintone-api';
+import { getAppViews, getUserDefinedFields } from '@/common/kintone-api';
 import { kx } from '../../types/kintone.api';
 import { ViewForResponse } from '@kintone/rest-api-client/lib/client/types';
 

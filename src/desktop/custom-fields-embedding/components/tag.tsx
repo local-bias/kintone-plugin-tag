@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import { Chip } from '@mui/material';
-import produce from 'immer';
+import { produce } from 'immer';
 import React, { FC, FCX } from 'react';
 import { useRecoilCallback, useRecoilValue } from 'recoil';
 import { tagDataState } from '../states/plugin';

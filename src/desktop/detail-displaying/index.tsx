@@ -1,5 +1,5 @@
 import React from 'react';
-import { restoreStorage } from '@common/plugin';
+import { restoreStorage } from '@/common/plugin';
 import { getMetaFieldId_UNSTABLE } from '@lb-ribbit/kintone-secrets';
 
 import App from './app';

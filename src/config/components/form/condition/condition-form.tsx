@@ -2,7 +2,7 @@ import React, { FCX, Suspense } from 'react';
 import { useRecoilCallback, useRecoilValue } from 'recoil';
 import styled from '@emotion/styled';
 import { Autocomplete, Skeleton, TextField } from '@mui/material';
-import produce from 'immer';
+import { produce } from 'immer';
 
 import { kx } from '@type/kintone.api';
 import { textFieldsState } from '../../../states/kintone';
