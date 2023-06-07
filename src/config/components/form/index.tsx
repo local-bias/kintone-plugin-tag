@@ -5,7 +5,7 @@ import styled from '@emotion/styled';
 import { storageState } from '../../states/plugin';
 import ConditionAdditionButton from './condition-addition-button';
 import Condition from './condition';
-import { Loading } from '@/common/components/loading';
+import { LoaderWithLabel } from '@konomi-app/ui-react';
 
 type Props = Readonly<{
   storage: kintone.plugin.Storage | null;
@@ -13,7 +13,7 @@ type Props = Readonly<{
 
 const Component: FCX<Props> = ({ className, storage }) => (
   <div {...{ className }}>
-    {!storage && <Loading label='設定情報を取得しています' />}
+    {!storage && <LoaderWithLabel label='設定情報を取得しています' />}
     {!!storage && (
       <>
         {storage.conditions.map((condition, index) => (
