@@ -111,7 +111,7 @@
     "@emotion/weak-memoize" "^0.3.1"
     stylis "4.2.0"
 
-"@emotion/css@^11.11.0":
+"@emotion/css@^11.10.6", "@emotion/css@^11.11.0":
   version "11.11.0"
   resolved "https://registry.yarnpkg.com/@emotion/css/-/css-11.11.0.tgz#dad6a27a77d5e5cbb0287674c3ace76d762563ca"
   dependencies:
@@ -162,7 +162,7 @@
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/@emotion/sheet/-/sheet-1.2.2.tgz#d58e788ee27267a14342303e1abb3d508b6d0fec"
 
-"@emotion/styled@11.11.0":
+"@emotion/styled@11.11.0", "@emotion/styled@^11.10.6", "@emotion/styled@^11.11.0":
   version "11.11.0"
   resolved "https://registry.yarnpkg.com/@emotion/styled/-/styled-11.11.0.tgz#26b75e1b5a1b7a629d7c0a8b708fbf5a9cdce346"
   dependencies:
@@ -457,7 +457,7 @@
     os-locale "^5.0.0"
     puppeteer "^19.7.5"
 
-"@kintone/rest-api-client@3.3.15", "@kintone/rest-api-client@^3.1.14":
+"@kintone/rest-api-client@3.3.15", "@kintone/rest-api-client@^3.1.14", "@kintone/rest-api-client@^3.3.10":
   version "3.3.15"
   resolved "https://registry.yarnpkg.com/@kintone/rest-api-client/-/rest-api-client-3.3.15.tgz#75091b30ec4e83b10bcca3ccbaaccb72a1578e24"
   dependencies:
@@ -488,6 +488,31 @@
     ts-loader "^9.4.2"
     typescript "^5.0.3"
     webpack "^5.77.0"
+
+"@konomi-app/kintone-utilities@^2.7.0":
+  version "2.7.0"
+  resolved "https://registry.yarnpkg.com/@konomi-app/kintone-utilities/-/kintone-utilities-2.7.0.tgz#6e78a80ccb053d7eab0292e7ac23bbdbb3279588"
+  dependencies:
+    "@emotion/css" "^11.10.6"
+    "@kintone/rest-api-client" "^3.3.10"
+
+"@konomi-app/kintone-utility-component@^0.9.0":
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/@konomi-app/kintone-utility-component/-/kintone-utility-component-0.9.0.tgz#f4f13ab9491f40a1b79a37b46b9d2509efac6240"
+  dependencies:
+    "@emotion/styled" "^11.10.6"
+    "@mui/icons-material" "^5.11.11"
+    "@mui/material" "^5.11.11"
+    react "^18.2.0"
+    react-dom "^18.2.0"
+
+"@konomi-app/ui-react@^1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@konomi-app/ui-react/-/ui-react-1.1.1.tgz#1df4901c7984b7805c2cb624508e005bb77173e1"
+  dependencies:
+    "@emotion/react" "^11.11.0"
+    "@emotion/styled" "^11.11.0"
+    react "^18.2.0"
 
 "@lb-ribbit/kintone-secrets@0.3.0":
   version "0.3.0"
@@ -525,13 +550,13 @@
   version "5.13.4"
   resolved "https://registry.yarnpkg.com/@mui/core-downloads-tracker/-/core-downloads-tracker-5.13.4.tgz#7e4b491d8081b6d45ae51556d82cb16b31315a19"
 
-"@mui/icons-material@5.11.16":
+"@mui/icons-material@5.11.16", "@mui/icons-material@^5.11.11":
   version "5.11.16"
   resolved "https://registry.yarnpkg.com/@mui/icons-material/-/icons-material-5.11.16.tgz#417fa773c56672e39d6ccfed9ac55591985f0d38"
   dependencies:
     "@babel/runtime" "^7.21.0"
 
-"@mui/material@5.13.4":
+"@mui/material@5.13.4", "@mui/material@^5.11.11":
   version "5.13.4"
   resolved "https://registry.yarnpkg.com/@mui/material/-/material-5.13.4.tgz#1fed8249c980ed37f9767f9dba8aa3a589495ff3"
   dependencies:
@@ -4067,7 +4092,7 @@ randombytes@^2.1.0:
   dependencies:
     safe-buffer "^5.1.0"
 
-react-dom@18.2.0:
+react-dom@18.2.0, react-dom@^18.2.0:
   version "18.2.0"
   resolved "https://registry.npmjs.org/react-dom/-/react-dom-18.2.0.tgz"
   dependencies:
@@ -4097,7 +4122,7 @@ react-transition-group@^4.4.5:
     loose-envify "^1.4.0"
     prop-types "^15.6.2"
 
-react@18.2.0:
+react@18.2.0, react@^18.2.0:
   version "18.2.0"
   resolved "https://registry.npmjs.org/react/-/react-18.2.0.tgz"
   dependencies:
