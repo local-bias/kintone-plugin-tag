@@ -42,7 +42,7 @@ export const getFieldProperties = async (
     throw new Error('アプリのフィールド情報が取得できませんでした');
   }
 
-  const { properties } = await kintoneClient.app.getFormFields({ app });
+  const { properties } = await kintoneClient.app.getFormFields({ app, preview: true });
 
   return properties;
 };
@@ -73,7 +73,7 @@ export const getAppLayout = async (_app?: number): Promise<kx.Layout> => {
     throw new Error('アプリのフィールド情報が取得できませんでした');
   }
 
-  const { layout } = await kintoneClient.app.getFormLayout({ app });
+  const { layout } = await kintoneClient.app.getFormLayout({ app, preview: true });
 
   return layout;
 };
