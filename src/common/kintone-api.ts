@@ -171,7 +171,7 @@ export const getAppViews = async () => {
     throw new Error('アプリのフィールド情報が取得できませんでした');
   }
 
-  const { views } = await kintoneClient.app.getViews({ app });
+  const { views } = await kintoneClient.app.getViews({ app, preview: true });
 
   return views;
 };
