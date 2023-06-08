@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { storeStorage } from '@konomi-app/kintone-utilities';
+import { getViews, storeStorage, updateViews } from '@konomi-app/kintone-utilities';
 import { PluginFooter } from '@konomi-app/kintone-utility-component';
 import SaveIcon from '@mui/icons-material/Save';
 import SettingsBackupRestoreIcon from '@mui/icons-material/SettingsBackupRestore';
@@ -11,6 +11,9 @@ import { loadingState, storageState } from '../../../states/plugin';
 import ExportButton from './export-button';
 import ImportButton from './import-button';
 import ResetButton from './reset-button';
+import { produce } from 'immer';
+import { getAppId } from '@lb-ribbit/kintone-xapp';
+import { WORD_CLOUD_ROOT_ID } from '@/common/static';
 
 type Props = {
   onSaveButtonClick: () => void;
@@ -70,6 +73,29 @@ const Container: FC = () => {
         set(loadingState, true);
         try {
           const storage = await snapshot.getPromise(storageState);
+
+          const app = getAppId();
+          if (!app) {
+            throw new Error('アプリのフィールド情報が取得できませんでした');
+          }
+          const { views } = await getViews({ app, preview: true });
+
+          const newViews = produce(views, (draft) => {
+            for (const condition of storage?.conditions || []) {
+              for (const view of Object.values(draft)) {
+                if (view.id === condition.wordCloudViewId && view.type === 'CUSTOM') {
+                  view.html = `<div id='${WORD_CLOUD_ROOT_ID}'></div>`;
+                  view.pager = false;
+                }
+              }
+            }
+          });
+
+          await updateViews({
+            app,
+            views: newViews,
+            debug: process.env.NODE_ENV === 'development',
+          });
 
           storeStorage(storage!, () => true);
           enqueueSnackbar('設定を保存しました', {

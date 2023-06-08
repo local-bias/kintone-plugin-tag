@@ -1,5 +1,7 @@
 import manifest from '../../plugin/manifest.json';
 
+export const WORD_CLOUD_ROOT_ID = `konomi-app_word-cloud`;
+
 export const PLUGIN_NAME = manifest.name.ja;
 
 export const LOCAL_STORAGE_KEY = 'ribbit-kintone-plugin';
