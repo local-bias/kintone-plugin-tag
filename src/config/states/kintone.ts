@@ -43,3 +43,12 @@ export const allViewsState = selector<Record<string, ViewForResponse>>({
     return { ...allViews, ...all };
   },
 });
+
+export const customizeViewsState = selector<ViewForResponse[]>({
+  key: `${PREFIX}customizedViewsState`,
+  get: async ({ get }) => {
+    const allViews = get(allViewsState);
+
+    return Object.values(allViews).filter((view) => view.type === 'CUSTOM');
+  },
+});

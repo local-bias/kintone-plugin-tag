@@ -1,31 +1,35 @@
-import React, { ChangeEventHandler, FC, FCX, memo, Suspense } from 'react';
+import React, { FC, FCX, memo, Suspense } from 'react';
 import styled from '@emotion/styled';
 import { useRecoilCallback, useRecoilValue } from 'recoil';
-import { MenuItem, Skeleton, TextField } from '@mui/material';
-import { allViewsState } from '@/config/states/kintone';
+import { Autocomplete, Skeleton, TextField } from '@mui/material';
+import { customizeViewsState } from '@/config/states/kintone';
 import { wordCloudViewIdState } from '@/config/states/plugin';
 
 const Component: FCX = ({ className }) => {
-  const views = useRecoilValue(allViewsState);
+  const views = useRecoilValue(customizeViewsState);
   const viewId = useRecoilValue(wordCloudViewIdState);
 
-  const onChange: ChangeEventHandler<HTMLInputElement> = useRecoilCallback(
+  const onViewIdChange = useRecoilCallback(
     ({ set }) =>
-      (e) => {
-        set(wordCloudViewIdState, e.target.value);
+      (value: string) => {
+        set(wordCloudViewIdState, value);
       },
     []
   );
 
   return (
     <div {...{ className }}>
-      <TextField select label='一覧の名前' value={viewId} {...{ onChange }}>
-        {Object.entries(views).map(([name, { id }], i) => (
-          <MenuItem key={i} value={id}>
-            {name}
-          </MenuItem>
-        ))}
-      </TextField>
+      <Autocomplete
+        value={views.find((view) => view.id === viewId) ?? null}
+        sx={{ width: '350px' }}
+        options={views}
+        isOptionEqualToValue={(view, v) => view.id === v.id}
+        getOptionLabel={(view) => `${view.name}`}
+        onChange={(_, view) => onViewIdChange(view?.id ?? '')}
+        renderInput={(params) => (
+          <TextField {...params} label='一覧の名前' variant='outlined' color='primary' />
+        )}
+      />
     </div>
   );
 };
