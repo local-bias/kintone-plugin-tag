@@ -14,6 +14,7 @@ import ResetButton from './reset-button';
 import { produce } from 'immer';
 import { getAppId } from '@lb-ribbit/kintone-xapp';
 import { WORD_CLOUD_ROOT_ID } from '@/lib/static';
+import { GUEST_SPACE_ID } from '@/lib/global';
 
 type Props = {
   onSaveButtonClick: () => void;
@@ -78,7 +79,12 @@ const Container: FC = () => {
           if (!app) {
             throw new Error('アプリのフィールド情報が取得できませんでした');
           }
-          const { views } = await getViews({ app, preview: true });
+          const { views } = await getViews({
+            app,
+            preview: true,
+            guestSpaceId: GUEST_SPACE_ID,
+            debug: process.env.NODE_ENV === 'development',
+          });
 
           const newViews = produce(views, (draft) => {
             for (const condition of storage?.conditions || []) {
@@ -94,6 +100,7 @@ const Container: FC = () => {
           await updateViews({
             app,
             views: newViews,
+            guestSpaceId: GUEST_SPACE_ID,
             debug: process.env.NODE_ENV === 'development',
           });
 
