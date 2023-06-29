@@ -6,19 +6,19 @@ import { restoreStorage } from '@/lib/plugin';
 import { PluginErrorBoundary } from '@/lib/components/error-boundary';
 import Form from './components/model/form';
 import { LoaderWithLabel } from '@konomi-app/ui-react';
-import { pluginIdState, storageState } from './states/plugin';
+import { storageState } from './states/plugin';
 import { PluginLayout, PluginContent, PluginBanner } from '@konomi-app/kintone-utility-component';
 import Footer from './components/model/footer';
 import Sidebar from './components/model/sidebar';
 import { URL_PROMOTION } from '@/lib/static';
 import { URL_BANNER } from '@/lib/static';
+import { PLUGIN_ID } from '@/lib/global';
 
-const Component: FC<{ pluginId: string }> = ({ pluginId }) => (
+const Component: FC = () => (
   <Suspense fallback={<LoaderWithLabel label='画面の描画を待機しています' />}>
     <RecoilRoot
       initializeState={({ set }) => {
-        set(pluginIdState, pluginId);
-        set(storageState, restoreStorage(pluginId));
+        set(storageState, restoreStorage(PLUGIN_ID));
       }}
     >
       <PluginErrorBoundary>

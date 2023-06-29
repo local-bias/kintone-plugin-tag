@@ -1,9 +1,9 @@
+import '@/lib/global';
 import Launcher from '@/lib/launcher';
-
-import customFieldsEmbedding from './custom-fields-embedding';
-import targetFieldSetting from './target-field-setting';
 import configFieldHiding from './config-field-hiding';
+import customFieldsEmbedding from './custom-fields-embedding';
 import detailDisplaying from './detail-displaying';
+import targetFieldSetting from './target-field-setting';
 import WordCloud from './word-cloud';
 
 ((PLUGIN_ID) =>

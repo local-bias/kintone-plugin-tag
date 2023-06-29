@@ -1,3 +1,4 @@
 import main from './main';
+import '@/lib/global';
 
-((PLUGIN_ID) => main(PLUGIN_ID))(kintone.$PLUGIN_ID);
+main();

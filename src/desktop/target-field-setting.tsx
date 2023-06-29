@@ -1,3 +1,4 @@
+import { PLUGIN_ID } from '@/lib/global';
 import { restoreStorage } from '@/lib/plugin';
 
 const events: launcher.Events = [
@@ -6,8 +7,8 @@ const events: launcher.Events = [
   'app.record.index.edit.submit',
 ];
 
-const action: launcher.Action = (event, pluginId) => {
-  const config = restoreStorage(pluginId);
+const action: launcher.Action = (event) => {
+  const config = restoreStorage(PLUGIN_ID);
 
   const validConditions = config.conditions.filter(
     (condition) => !!condition.targetField && !!condition.configField
