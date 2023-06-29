@@ -1,4 +1,4 @@
-import { Autocomplete, FormControlLabel, Skeleton, Switch, TextField } from '@mui/material';
+import { FormControlLabel, Skeleton, Switch } from '@mui/material';
 import React, { FC, FCX, memo, Suspense } from 'react';
 import { useRecoilCallback, useRecoilValue } from 'recoil';
 import { hideConfigFieldState } from '../../../states/plugin';

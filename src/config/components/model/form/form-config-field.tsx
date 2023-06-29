@@ -56,7 +56,7 @@ const Container: FC = () => {
     <Suspense
       fallback={
         <div>
-          <Skeleton width={360} height={56} />
+          <Skeleton variant='rounded' width={360} height={56} />
         </div>
       }
     >
