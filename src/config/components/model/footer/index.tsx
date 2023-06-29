@@ -13,7 +13,7 @@ import ImportButton from './import-button';
 import ResetButton from './reset-button';
 import { produce } from 'immer';
 import { getAppId } from '@lb-ribbit/kintone-xapp';
-import { WORD_CLOUD_ROOT_ID } from '@/common/static';
+import { WORD_CLOUD_ROOT_ID } from '@/lib/static';
 
 type Props = {
   onSaveButtonClick: () => void;

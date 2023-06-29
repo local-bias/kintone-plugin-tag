@@ -1,4 +1,4 @@
-import { restoreStorage } from '@/common/plugin';
+import { restoreStorage } from '@/lib/plugin';
 
 const events: launcher.Events = [
   'app.record.edit.submit',

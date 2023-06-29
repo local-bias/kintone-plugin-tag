@@ -1,5 +1,5 @@
-import { PLUGIN_NAME } from '@/common/static';
-import { pushPluginName } from '@/common/local-storage';
+import { PLUGIN_NAME } from '@/lib/static';
+import { pushPluginName } from '@/lib/local-storage';
 
 class Launcher {
   private readonly _pluginId: string;

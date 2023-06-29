@@ -1,11 +1,11 @@
 import { selector } from 'recoil';
-import { getAppViews, getUserDefinedFields } from '@/common/kintone-api';
-import { kx } from '../../types/kintone.api';
-import { ViewForResponse } from '@kintone/rest-api-client/lib/client/types';
+import { getAppViews, getUserDefinedFields } from '@/lib/kintone-api';
+import { ViewForResponse } from '@kintone/rest-api-client/lib/src/client/types';
+import { kintoneAPI } from '@konomi-app/kintone-utilities';
 
 const PREFIX = 'kintone';
 
-export const appFieldsState = selector<kx.FieldProperty[]>({
+export const appFieldsState = selector<kintoneAPI.FieldProperty[]>({
   key: `${PREFIX}appFieldsState`,
   get: async () => {
     const properties = await getUserDefinedFields();
@@ -16,7 +16,7 @@ export const appFieldsState = selector<kx.FieldProperty[]>({
   },
 });
 
-export const textFieldsState = selector<kx.FieldProperty[]>({
+export const textFieldsState = selector<kintoneAPI.FieldProperty[]>({
   key: `${PREFIX}textFieldsState`,
   get: async ({ get }) => {
     const allFields = get(appFieldsState);

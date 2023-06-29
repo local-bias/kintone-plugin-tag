@@ -1,5 +1,5 @@
-import { restoreStorage } from '@/common/plugin';
-import { WORD_CLOUD_ROOT_ID } from '@/common/static';
+import { restoreStorage } from '@/lib/plugin';
+import { WORD_CLOUD_ROOT_ID } from '@/lib/static';
 import { Root, Container, Label, color, percent } from '@amcharts/amcharts5';
 import { WordCloud } from '@amcharts/amcharts5/wc';
 import Animated from '@amcharts/amcharts5/themes/Animated';

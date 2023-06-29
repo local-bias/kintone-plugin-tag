@@ -1,4 +1,4 @@
-import Launcher from '@/common/launcher';
+import Launcher from '@/lib/launcher';
 
 import customFieldsEmbedding from './custom-fields-embedding';
 import targetFieldSetting from './target-field-setting';

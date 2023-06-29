@@ -2,16 +2,16 @@ import React, { Suspense, FC } from 'react';
 import { RecoilRoot } from 'recoil';
 import { SnackbarProvider } from 'notistack';
 
-import { restoreStorage } from '@/common/plugin';
-import { PluginErrorBoundary } from '@/common/components/error-boundary';
+import { restoreStorage } from '@/lib/plugin';
+import { PluginErrorBoundary } from '@/lib/components/error-boundary';
 import Form from './components/model/form';
 import { LoaderWithLabel } from '@konomi-app/ui-react';
 import { pluginIdState, storageState } from './states/plugin';
 import { PluginLayout, PluginContent, PluginBanner } from '@konomi-app/kintone-utility-component';
 import Footer from './components/model/footer';
 import Sidebar from './components/model/sidebar';
-import { URL_PROMOTION } from '@/common/static';
-import { URL_BANNER } from '@/common/static';
+import { URL_PROMOTION } from '@/lib/static';
+import { URL_BANNER } from '@/lib/static';
 
 const Component: FC<{ pluginId: string }> = ({ pluginId }) => (
   <Suspense fallback={<LoaderWithLabel label='画面の描画を待機しています' />}>
