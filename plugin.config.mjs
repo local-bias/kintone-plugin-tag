@@ -43,9 +43,9 @@ export default {
       config: { js: [`${localhost}/dist/dev/config/index.js`] },
     },
     prod: {
-      desktop: { js: [`${cdn}/cdn/desktop.js`] },
-      mobile: { js: [`${cdn}/cdn/desktop.js`] },
-      config: { js: [`${cdn}/cdn/config.js`] },
+      desktop: { js: ['desktop.js'] },
+      mobile: { js: ['desktop.js'] },
+      config: { js: ['config.js'] },
     },
     standalone: {
       desktop: { js: ['desktop.js'] },
