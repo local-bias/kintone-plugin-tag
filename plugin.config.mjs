@@ -8,7 +8,7 @@ export default {
   manifest: {
     base: {
       manifest_version: 1,
-      version: '1.3.2',
+      version: '1.4.0',
       type: 'APP',
       name: {
         en: 'Tagging Plugin',
