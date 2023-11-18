@@ -8,6 +8,7 @@ import Form from './components/model/form';
 import { LoaderWithLabel } from '@konomi-app/ui-react';
 import { storageState } from './states/plugin';
 import { PluginLayout, PluginContent, PluginBanner } from '@konomi-app/kintone-utility-component';
+import Announcement from './components/model/announcement';
 import Footer from './components/model/footer';
 import Sidebar from './components/model/sidebar';
 import { URL_PROMOTION } from '@/lib/static';
@@ -22,6 +23,7 @@ const Component: FC = () => (
       }}
     >
       <PluginErrorBoundary>
+        <Announcement />
         <SnackbarProvider maxSnack={1}>
           <PluginLayout>
             <Suspense fallback={<LoaderWithLabel label='設定情報を取得しています' />}>

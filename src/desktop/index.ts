@@ -4,13 +4,8 @@ import customFieldsEmbedding from './custom-fields-embedding';
 import detailDisplaying from './detail-displaying';
 import targetFieldSetting from './target-field-setting';
 import WordCloud from './word-cloud';
-import { pushPluginName } from '@/lib/local-storage';
 import { KintoneEventListener } from '@konomi-app/kintone-utilities';
 import { PLUGIN_NAME } from '@/lib/static';
-
-try {
-  pushPluginName();
-} catch (error) {}
 
 const listener = new KintoneEventListener({
   errorHandler: (error, props) => {
