@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { getViews, storeStorage, updateViews } from '@konomi-app/kintone-utilities';
+import { getViews, storeStorage, updateViews, getAppId } from '@konomi-app/kintone-utilities';
 import { PluginFooter } from '@konomi-app/kintone-utility-component';
 import SaveIcon from '@mui/icons-material/Save';
 import SettingsBackupRestoreIcon from '@mui/icons-material/SettingsBackupRestore';
@@ -12,7 +12,6 @@ import ExportButton from './export-button';
 import ImportButton from './import-button';
 import ResetButton from './reset-button';
 import { produce } from 'immer';
-import { getAppId } from '@lb-ribbit/kintone-xapp';
 import { WORD_CLOUD_ROOT_ID } from '@/lib/static';
 import { GUEST_SPACE_ID } from '@/lib/global';
 
