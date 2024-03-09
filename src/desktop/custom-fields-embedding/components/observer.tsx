@@ -1,6 +1,6 @@
 import { FC, useEffect } from 'react';
 import { useRecoilValue } from 'recoil';
-import { getCurrentRecord, setCurrentRecord } from '@lb-ribbit/kintone-xapp';
+import { getCurrentRecord, setCurrentRecord } from '@konomi-app/kintone-utilities';
 import { pluginConditionState, tagDataState } from '../states/plugin';
 
 const Component: FC = () => {
