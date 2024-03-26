@@ -1,17 +1,17 @@
 // @ts-check
-const hp = 'https://konomi.app/';
-const cdn = 'https://cdn.jsdelivr.net/gh/local-bias/kintone-plugin-tag@latest';
-const localhost = 'https://127.0.0.1:5821';
+const hp = 'https://konomi.app';
+const cdn = 'https://kintone-plugin.konomi.app';
 const key = 'tag';
+const localhost = 'https://127.0.0.1:5821';
 
-/** @type {import('@konomi-app/kintone-utilities').PluginConfig} */
-export default {
+/** @satisfies { import('@konomi-app/kintone-utilities').PluginConfig } */
+export default /** @type { const } */ ({
   id: `ribbit-kintone-plugin-${key}`,
   pluginReleasePageUrl: `https://ribbit.konomi.app/kintone-plugin/`,
   manifest: {
     base: {
       manifest_version: 1,
-      version: '1.5.0',
+      version: '1.6.0',
       type: 'APP',
       name: {
         en: 'Tagging Plugin',
@@ -25,12 +25,12 @@ export default {
       },
       icon: 'icon.png',
       homepage_url: { ja: hp, en: hp },
-      desktop: { js: [`${cdn}/common/desktop.js`], css: [] },
-      mobile: { js: [`${cdn}/common/desktop.js`], css: [] },
+      desktop: { js: [`${cdn}/common/desktop.js`], css: [`${cdn}/common/desktop.css`] },
+      mobile: { js: [`${cdn}/common/desktop.js`], css: [`${cdn}/common/desktop.css`] },
       config: {
         html: 'config.html',
         js: [`${cdn}/common/config.js`],
-        css: [],
+        css: [`${cdn}/common/config.css`],
         required_params: [],
       },
     },
@@ -54,9 +54,9 @@ export default {
       config: { js: [`${cdn}/${key}/config.js`], css: [`${cdn}/${key}/config.css`] },
     },
     standalone: {
-      desktop: { js: ['desktop.js'] },
-      mobile: { js: ['desktop.js'] },
-      config: { js: ['config.js'] },
+      desktop: { js: ['desktop.js'], css: ['desktop.css'] },
+      mobile: { js: ['desktop.js'], css: ['desktop.css'] },
+      config: { js: ['config.js'], css: ['config.css'] },
     },
   },
-};
+});
