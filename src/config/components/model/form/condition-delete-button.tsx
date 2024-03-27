@@ -1,23 +1,11 @@
-import React, { FC, FCX, memo } from 'react';
+import React, { FC, memo } from 'react';
 import { useRecoilCallback, useRecoilValue } from 'recoil';
 import { produce } from 'immer';
-import { Button } from '@mui/material';
-import DeleteIcon from '@mui/icons-material/Delete';
+import { PluginConditionDeleteButton } from '@konomi-app/kintone-utilities-react';
 import { storageState, tabIndexState } from '../../../states/plugin';
-type Props = Readonly<{ onClick: () => void }>;
-
-const Component: FCX<Props> = ({ className, onClick }) => (
-  <Button
-    variant='outlined'
-    color='error'
-    onClick={onClick}
-    endIcon={<DeleteIcon fontSize='small' />}
-  >
-    この設定を削除する
-  </Button>
-);
 
 const Container: FC = () => {
+  const storage = useRecoilValue(storageState);
   const index = useRecoilValue(tabIndexState);
 
   const onClick = useRecoilCallback(
@@ -33,7 +21,11 @@ const Container: FC = () => {
     [index]
   );
 
-  return <Component {...{ onClick }} />;
+  if ((storage?.conditions.length ?? 0) < 2) {
+    return null;
+  }
+
+  return <PluginConditionDeleteButton {...{ onClick }} />;
 };
 
 export default memo(Container);

@@ -1,15 +1,14 @@
 import React from 'react';
-import { restoreStorage } from '@/lib/plugin';
+import { restorePluginConfig } from '@/lib/plugin';
 import { css } from '@emotion/css';
 import App from './app';
 import { getInitialTagData } from '../action';
 import { createRoot } from 'react-dom/client';
-import { PLUGIN_ID } from '@/lib/global';
 import { isMobile, getMetaFieldId_UNSTABLE } from '@konomi-app/kintone-utilities';
 import { manager } from '@/lib/event-manager';
 
 manager.add(['app.record.create.show', 'app.record.edit.show'], (event) => {
-  const config = restoreStorage(PLUGIN_ID);
+  const config = restorePluginConfig();
 
   const validConditions = config.conditions.filter(
     (condition) => !!condition.targetField && !!condition.configField

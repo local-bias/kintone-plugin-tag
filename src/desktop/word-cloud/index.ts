@@ -1,15 +1,15 @@
-import { restoreStorage } from '@/lib/plugin';
+import { restorePluginConfig } from '@/lib/plugin';
 import { WORD_CLOUD_ROOT_ID } from '@/lib/static';
 import { Root, Container, Label, color, percent } from '@amcharts/amcharts5';
 import { WordCloud } from '@amcharts/amcharts5/wc';
 import Animated from '@amcharts/amcharts5/themes/Animated';
 import { css } from '@emotion/css';
 import { getAppId, getAllRecords } from '@konomi-app/kintone-utilities';
-import { GUEST_SPACE_ID, PLUGIN_ID } from '@/lib/global';
+import { GUEST_SPACE_ID } from '@/lib/global';
 import { manager } from '@/lib/event-manager';
 
 manager.add(['app.record.index.show'], async (event) => {
-  const config = restoreStorage(PLUGIN_ID);
+  const config = restorePluginConfig();
 
   const found = config.conditions?.find(
     (condition) => condition.wordCloudViewId === String(event.viewId)
@@ -106,4 +106,4 @@ manager.add(['app.record.index.show'], async (event) => {
   series.data.setAll(seriesData);
 
   return event;
-})
+});

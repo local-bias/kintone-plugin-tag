@@ -36,7 +36,7 @@
     "@mui/icons-material": "5.15.14",
     "@mui/material": "5.15.14",
     "@types/luxon": "3.4.2",
-    "@types/react": "18.2.71",
+    "@types/react": "18.2.72",
     "@types/react-dom": "18.2.22",
     "@typescript-eslint/eslint-plugin": "7.4.0",
     "@typescript-eslint/parser": "7.4.0",
@@ -65,5 +65,13 @@
     "tabWidth": 2,
     "trailingComma": "es5",
     "endOfLine": "lf"
+  },
+  "dependencies": {
+    "@konomi-app/kintone-utilities-react": "^1.13.1",
+    "@radix-ui/react-alert-dialog": "^1.0.5",
+    "@radix-ui/react-dialog": "^1.0.5",
+    "@radix-ui/react-slot": "^1.0.2",
+    "class-variance-authority": "^0.7.0",
+    "lucide-react": "^0.363.0"
   }
 }

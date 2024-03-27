@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
     "sourceMap": true,
     "target": "ESNext",
     "module": "ESNext",
@@ -12,10 +13,7 @@
     "resolveJsonModule": true,
     "jsx": "react",
     "strict": true,
-    "paths": {
-      "@/*": ["./src/*"],
-      "@type/*": ["./src/types/*"]
-    }
+    "paths": { "@/*": ["./src/*"] }
   },
   "typeRoots": ["src/types", "node_modules/@types"],
   "files": [

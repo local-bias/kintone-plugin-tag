@@ -1,25 +1,26 @@
-import React, { ChangeEventHandler, FC, FCX, memo, Suspense } from 'react';
-import styled from '@emotion/styled';
+import React, { ChangeEventHandler, FC, memo, Suspense } from 'react';
 import { useRecoilCallback, useRecoilValue } from 'recoil';
 import { MenuItem, Skeleton, TextField } from '@mui/material';
 import { allViewsState } from '@/config/states/kintone';
-import { targetViewIdState } from '@/config/states/plugin';
+import { getConditionPropertyState } from '@/config/states/plugin';
 
-const Component: FCX = ({ className }) => {
+const state = getConditionPropertyState('targetViewId');
+
+const Component: FC = () => {
   const views = useRecoilValue(allViewsState);
-  const viewId = useRecoilValue(targetViewIdState);
+  const viewId = useRecoilValue(state);
 
   const onChange: ChangeEventHandler<HTMLInputElement> = useRecoilCallback(
     ({ set }) =>
       (e) => {
-        set(targetViewIdState, e.target.value);
+        set(state, e.target.value);
       },
     []
   );
 
   return (
-    <div {...{ className }}>
-      <TextField select label='一覧の名前' value={viewId} {...{ onChange }}>
+    <div>
+      <TextField select label='一覧の名前' value={viewId} {...{ onChange }} sx={{ width: '250px' }}>
         {Object.entries(views).map(([name, { id }], i) => (
           <MenuItem key={i} value={id}>
             {name}
@@ -30,12 +31,6 @@ const Component: FCX = ({ className }) => {
   );
 };
 
-const StyledComponent = styled(Component)`
-  & > div {
-    width: 250px;
-  }
-`;
-
 const Container: FC = () => {
   return (
     <Suspense
@@ -45,7 +40,7 @@ const Container: FC = () => {
         </div>
       }
     >
-      <StyledComponent />
+      <Component />
     </Suspense>
   );
 };

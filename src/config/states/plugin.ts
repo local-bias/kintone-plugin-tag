@@ -1,12 +1,11 @@
-import { getConditionField, getUpdatedStorage } from '@/lib/plugin';
-import { produce } from 'immer';
-import { atom, selector, selectorFamily } from 'recoil';
+import { RecoilState, atom, selector, selectorFamily } from 'recoil';
+import { getUpdatedStorage, restorePluginConfig } from '@/lib/plugin';
 
 const PREFIX = 'plugin';
 
-export const storageState = atom<kintone.plugin.Storage | null>({
+export const storageState = atom<Plugin.Config>({
   key: `${PREFIX}storageState`,
-  default: null,
+  default: restorePluginConfig(),
 });
 
 export const loadingState = atom<boolean>({
@@ -19,7 +18,7 @@ export const tabIndexState = atom<number>({
   default: 0,
 });
 
-export const conditionsState = selector<kintone.plugin.Condition[]>({
+export const conditionsState = selector<Plugin.Condition[]>({
   key: `${PREFIX}conditionsState`,
   get: ({ get }) => {
     const storage = get(storageState);
@@ -27,134 +26,31 @@ export const conditionsState = selector<kintone.plugin.Condition[]>({
   },
 });
 
-export const conditionState = selectorFamily<kintone.plugin.Condition | null, number>({
-  key: `${PREFIX}conditionState`,
+const conditionPropertyState = selectorFamily<
+  Plugin.Condition[keyof Plugin.Condition],
+  keyof Plugin.Condition
+>({
+  key: `${PREFIX}conditionPropertyState`,
   get:
-    (conditionIndex) =>
+    (key) =>
     ({ get }) => {
+      const conditionIndex = get(tabIndexState);
       const storage = get(storageState);
-      return !storage ? null : storage.conditions[conditionIndex] ?? null;
+      return storage.conditions[conditionIndex][key];
     },
   set:
-    (conditionIndex) =>
-    ({ set }, newValue) => {
+    (key) =>
+    ({ get, set }, newValue) => {
+      const conditionIndex = get(tabIndexState);
       set(storageState, (current) =>
-        produce(current, (draft) => {
-          if (!draft) {
-            return;
-          }
-          draft.conditions[conditionIndex] = newValue as kintone.plugin.Condition;
+        getUpdatedStorage(current, {
+          conditionIndex,
+          key,
+          value: newValue as Plugin.Condition[keyof Plugin.Condition],
         })
       );
     },
 });
 
-export const targetFieldState = selector<string>({
-  key: `${PREFIX}targetFieldState`,
-  get: ({ get }) => {
-    const conditionIndex = get(tabIndexState);
-    return getConditionField(get(storageState), {
-      conditionIndex,
-      key: 'targetField',
-      defaultValue: '',
-    });
-  },
-  set: ({ get, set }, newValue) => {
-    const conditionIndex = get(tabIndexState);
-    set(storageState, (current) =>
-      getUpdatedStorage(current, {
-        conditionIndex,
-        key: 'targetField',
-        value: newValue as unknown as string,
-      })
-    );
-  },
-});
-
-export const configFieldState = selector<string>({
-  key: `${PREFIX}configFieldState`,
-  get: ({ get }) => {
-    const conditionIndex = get(tabIndexState);
-    return getConditionField(get(storageState), {
-      conditionIndex,
-      key: 'configField',
-      defaultValue: '',
-    });
-  },
-  set: ({ get, set }, newValue) => {
-    const conditionIndex = get(tabIndexState);
-    set(storageState, (current) =>
-      getUpdatedStorage(current, {
-        conditionIndex,
-        key: 'configField',
-        value: newValue as unknown as string,
-      })
-    );
-  },
-});
-
-export const hideConfigFieldState = selector<boolean>({
-  key: `${PREFIX}hideConfigFieldState`,
-  get: ({ get }) => {
-    const conditionIndex = get(tabIndexState);
-    return getConditionField(get(storageState), {
-      conditionIndex,
-      key: 'hideConfigField',
-      defaultValue: true,
-    });
-  },
-  set: ({ get, set }, newValue) => {
-    const conditionIndex = get(tabIndexState);
-    set(storageState, (current) =>
-      getUpdatedStorage(current, {
-        conditionIndex,
-        key: 'hideConfigField',
-        value: newValue as unknown as boolean,
-      })
-    );
-  },
-});
-
-export const targetViewIdState = selector<string>({
-  key: `${PREFIX}targetViewIdState`,
-  get: ({ get }) => {
-    const conditionIndex = get(tabIndexState);
-    return getConditionField(get(storageState), {
-      conditionIndex,
-      key: 'targetViewId',
-      defaultValue: '',
-    });
-  },
-  set: ({ get, set }, newValue) => {
-    const conditionIndex = get(tabIndexState);
-    set(storageState, (current) =>
-      getUpdatedStorage(current, {
-        conditionIndex,
-        key: 'targetViewId',
-        value: newValue as unknown as string,
-      })
-    );
-  },
-});
-
-export const wordCloudViewIdState = selector<string>({
-  key: `${PREFIX}wordCloudViewIdState`,
-  get: ({ get }) => {
-    const conditionIndex = get(tabIndexState);
-    return getConditionField(get(storageState), {
-      conditionIndex,
-      key: 'wordCloudViewId',
-      defaultValue: '',
-    });
-  },
-  set: ({ get, set }, newValue) => {
-    const conditionIndex = get(tabIndexState);
-    set(storageState, (current) =>
-      getUpdatedStorage(current, {
-        conditionIndex,
-        key: 'wordCloudViewId',
-        value: newValue as unknown as string,
-      })
-    );
-  },
-});
+export const getConditionPropertyState = <T extends keyof Plugin.Condition>(property: T) =>
+  conditionPropertyState(property) as unknown as RecoilState<Plugin.Condition[T]>;

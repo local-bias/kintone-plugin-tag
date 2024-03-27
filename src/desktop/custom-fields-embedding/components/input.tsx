@@ -1,5 +1,5 @@
 import { Button } from '@mui/material';
-import React, { ChangeEventHandler, FCX, KeyboardEventHandler, useState } from 'react';
+import React, { ChangeEventHandler, FC, KeyboardEventHandler, useState } from 'react';
 import { KintoneInput } from '@/lib/components/kintone-input';
 import styled from '@emotion/styled';
 import { useRecoilCallback } from 'recoil';
@@ -7,9 +7,9 @@ import { tagDataState } from '../states/plugin';
 import { produce } from 'immer';
 import AddIcon from '@mui/icons-material/Add';
 
-type Props = { width: number };
+type Props = { className?: string; width: number };
 
-const Component: FCX<Props> = ({ className }) => {
+const Component: FC<Props> = ({ className }) => {
   const [input, setInput] = useState<string>('');
 
   const onInputChange: ChangeEventHandler<HTMLInputElement> = (event) => {

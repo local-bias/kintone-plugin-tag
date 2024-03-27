@@ -1,24 +1,25 @@
 import { Autocomplete, Skeleton, TextField } from '@mui/material';
-import React, { FC, FCX, memo, Suspense } from 'react';
+import React, { FC, memo, Suspense } from 'react';
 import { useRecoilCallback, useRecoilValue } from 'recoil';
 import { textFieldsState } from '../../../states/kintone';
-import { targetFieldState } from '../../../states/plugin';
-import styled from '@emotion/styled';
+import { getConditionPropertyState } from '../../../states/plugin';
 
-const Component: FCX = ({ className }) => {
-  const targetField = useRecoilValue(targetFieldState);
+const state = getConditionPropertyState('targetField');
+
+const Component: FC = () => {
+  const targetField = useRecoilValue(state);
   const fields = useRecoilValue(textFieldsState);
 
   const onFieldChange = useRecoilCallback(
     ({ set }) =>
       (value: string) => {
-        set(targetFieldState, value);
+        set(state, value);
       },
     []
   );
 
   return (
-    <div className={className}>
+    <div>
       <Autocomplete
         value={fields.find((field) => field.code === targetField) ?? null}
         sx={{ width: '350px' }}
@@ -39,18 +40,6 @@ const Component: FCX = ({ className }) => {
   );
 };
 
-const StyledComponent = styled(Component)`
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-
-  .row {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-`;
-
 const Container: FC = () => {
   return (
     <Suspense
@@ -60,7 +49,7 @@ const Container: FC = () => {
         </div>
       }
     >
-      <StyledComponent />
+      <Component />
     </Suspense>
   );
 };

@@ -1,9 +1,9 @@
 import styled from '@emotion/styled';
-import React, { FCwC } from 'react';
+import React, { FC, PropsWithChildren } from 'react';
 
 type Props = { className?: string };
 
-const Component: FCwC<Props> = ({ children, className }) => (
+const Component: FC<PropsWithChildren<Props>> = ({ children, className }) => (
   <div className={className}>{children}</div>
 );
 

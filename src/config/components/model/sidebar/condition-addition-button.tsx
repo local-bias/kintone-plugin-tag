@@ -2,15 +2,15 @@ import React, { FC, memo } from 'react';
 import { useRecoilCallback } from 'recoil';
 import { produce } from 'immer';
 
+import { PluginConditionAppendButton } from '@konomi-app/kintone-utilities-react';
 import { getNewCondition } from '@/lib/plugin';
 import { storageState } from '../../../states/plugin';
-import { PluginConditionAppendButton } from '@konomi-app/kintone-utility-component';
 
 const Container: FC = () => {
   const addCondition = useRecoilCallback(
     ({ set }) =>
       () => {
-        set(storageState, (_, _storage = _!) =>
+        set(storageState, (_storage) =>
           produce(_storage, (draft) => {
             draft.conditions.push(getNewCondition());
           })

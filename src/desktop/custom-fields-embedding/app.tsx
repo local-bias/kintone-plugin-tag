@@ -8,8 +8,8 @@ import Tag from './components/tag';
 import { pluginConditionState, tagDataState } from './states/plugin';
 
 type Props = {
-  condition: kintone.plugin.Condition;
-  initialValue: kintone.plugin.TagData;
+  condition: Plugin.Condition;
+  initialValue: Plugin.TagData;
   width?: number;
 };
 

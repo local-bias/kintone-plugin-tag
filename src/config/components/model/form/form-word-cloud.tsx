@@ -1,27 +1,28 @@
-import React, { FC, FCX, memo, Suspense } from 'react';
-import styled from '@emotion/styled';
+import React, { FC, memo, Suspense } from 'react';
 import { useRecoilCallback, useRecoilValue } from 'recoil';
 import { Autocomplete, Skeleton, TextField } from '@mui/material';
 import { customizeViewsState } from '@/config/states/kintone';
-import { wordCloudViewIdState } from '@/config/states/plugin';
+import { getConditionPropertyState } from '@/config/states/plugin';
 
-const Component: FCX = ({ className }) => {
+const state = getConditionPropertyState('wordCloudViewId');
+
+const Component: FC = () => {
   const views = useRecoilValue(customizeViewsState);
-  const viewId = useRecoilValue(wordCloudViewIdState);
+  const viewId = useRecoilValue(state);
 
   const onViewIdChange = useRecoilCallback(
     ({ set }) =>
       (value: string) => {
-        set(wordCloudViewIdState, value);
+        set(state, value);
       },
     []
   );
 
   return (
-    <div {...{ className }}>
+    <div>
       <Autocomplete
         value={views.find((view) => view.id === viewId) ?? null}
-        sx={{ width: '350px' }}
+        sx={{ width: '250px' }}
         options={views}
         isOptionEqualToValue={(view, v) => view.id === v.id}
         getOptionLabel={(view) => `${view.name}`}
@@ -34,12 +35,6 @@ const Component: FCX = ({ className }) => {
   );
 };
 
-const StyledComponent = styled(Component)`
-  & > div {
-    width: 250px;
-  }
-`;
-
 const Container: FC = () => {
   return (
     <Suspense
@@ -49,7 +44,7 @@ const Container: FC = () => {
         </div>
       }
     >
-      <StyledComponent />
+      <Component />
     </Suspense>
   );
 };

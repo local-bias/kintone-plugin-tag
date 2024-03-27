@@ -1,11 +1,10 @@
-import styled from '@emotion/styled';
 import { Chip } from '@mui/material';
 import { produce } from 'immer';
-import React, { FC, FCX } from 'react';
+import React, { FC } from 'react';
 import { useRecoilCallback, useRecoilValue } from 'recoil';
 import { tagDataState } from '../states/plugin';
 
-const Component: FCX = ({ className }) => {
+const Component: FC = () => {
   const tagData = useRecoilValue(tagDataState);
 
   const onDeleteTag = useRecoilCallback(
@@ -21,25 +20,20 @@ const Component: FCX = ({ className }) => {
   );
 
   return (
-    <div className={className}>
-      {tagData.tags.map((tag, i) => (
-        <Chip
-          key={`${i}_${tag.value}`}
-          color='primary'
-          variant='outlined'
-          label={tag.value}
-          onDelete={() => onDeleteTag(i)}
-        />
-      ))}
+    <div className='🐸'>
+      <div className='flex mt-2 flex-wrap gap-2'>
+        {tagData.tags.map((tag, i) => (
+          <Chip
+            key={`${i}_${tag.value}`}
+            color='primary'
+            variant='outlined'
+            label={tag.value}
+            onDelete={() => onDeleteTag(i)}
+          />
+        ))}
+      </div>
     </div>
   );
 };
 
-const StyledComponent = styled(Component)`
-  display: flex;
-  margin-top: 0.5rem;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-`;
-
-export default StyledComponent;
+export default Component;

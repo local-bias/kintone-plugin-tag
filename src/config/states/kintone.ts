@@ -1,18 +1,36 @@
+import { getFormFields, kintoneAPI, getAppId, getViews } from '@konomi-app/kintone-utilities';
 import { selector } from 'recoil';
-import { getAppViews, getUserDefinedFields } from '@/lib/kintone-api';
-import { ViewForResponse } from '@kintone/rest-api-client/lib/src/client/types';
-import { kintoneAPI } from '@konomi-app/kintone-utilities';
+import { GUEST_SPACE_ID, LANGUAGE } from '@/lib/global';
 
 const PREFIX = 'kintone';
 
 export const appFieldsState = selector<kintoneAPI.FieldProperty[]>({
   key: `${PREFIX}appFieldsState`,
   get: async () => {
-    const properties = await getUserDefinedFields();
+    const app = getAppId()!;
+    const { properties } = await getFormFields({
+      app,
+      preview: true,
+      guestSpaceId: GUEST_SPACE_ID,
+      debug: process.env.NODE_ENV === 'development',
+    });
 
     const values = Object.values(properties);
 
     return values.sort((a, b) => a.label.localeCompare(b.label, 'ja'));
+  },
+});
+
+export const flatFieldsState = selector<kintoneAPI.FieldProperty[]>({
+  key: `${PREFIX}flatFieldsState`,
+  get: async ({ get }) => {
+    const fields = get(appFieldsState);
+    return fields.flatMap((field) => {
+      if (field.type === 'SUBTABLE') {
+        return Object.values(field.fields);
+      }
+      return field;
+    });
   },
 });
 
@@ -27,10 +45,16 @@ export const textFieldsState = selector<kintoneAPI.FieldProperty[]>({
   },
 });
 
-export const allViewsState = selector<Record<string, ViewForResponse>>({
+export const allViewsState = selector<Record<string, kintoneAPI.view.Response>>({
   key: `${PREFIX}allViewsState`,
   get: async () => {
-    const allViews = await getAppViews();
+    const { views: allViews } = await getViews({
+      app: getAppId()!,
+      guestSpaceId: GUEST_SPACE_ID,
+      preview: true,
+      debug: process.env.NODE_ENV === 'development',
+      lang: LANGUAGE as kintoneAPI.rest.Lang,
+    });
 
     const all = {
       '(すべて)': {
@@ -38,13 +62,13 @@ export const allViewsState = selector<Record<string, ViewForResponse>>({
         type: 'LIST',
         name: '(すべて)',
       },
-    } as any as Record<string, ViewForResponse>;
+    } as any as Record<string, kintoneAPI.view.Response>;
 
     return { ...allViews, ...all };
   },
 });
 
-export const customizeViewsState = selector<ViewForResponse[]>({
+export const customizeViewsState = selector<kintoneAPI.view.Response[]>({
   key: `${PREFIX}customizedViewsState`,
   get: async ({ get }) => {
     const allViews = get(allViewsState);

@@ -1,22 +1,23 @@
 import { FormControlLabel, Skeleton, Switch } from '@mui/material';
-import React, { FC, FCX, memo, Suspense } from 'react';
+import React, { FC, memo, Suspense } from 'react';
 import { useRecoilCallback, useRecoilValue } from 'recoil';
-import { hideConfigFieldState } from '../../../states/plugin';
-import styled from '@emotion/styled';
+import { getConditionPropertyState } from '../../../states/plugin';
 
-const Component: FCX = ({ className }) => {
-  const hideConfigField = useRecoilValue(hideConfigFieldState);
+const state = getConditionPropertyState('hideConfigField');
+
+const Component: FC = () => {
+  const hideConfigField = useRecoilValue(state);
 
   const onChange = useRecoilCallback(
     ({ set }) =>
       (value: boolean) => {
-        set(hideConfigFieldState, value);
+        set(state, value);
       },
     []
   );
 
   return (
-    <div className={className}>
+    <div>
       <FormControlLabel
         control={<Switch color='primary' checked={hideConfigField} />}
         onChange={(_, checked) => onChange(checked)}
@@ -25,18 +26,6 @@ const Component: FCX = ({ className }) => {
     </div>
   );
 };
-
-const StyledComponent = styled(Component)`
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-
-  .row {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-`;
 
 const Container: FC = () => {
   return (
@@ -47,7 +36,7 @@ const Container: FC = () => {
         </div>
       }
     >
-      <StyledComponent />
+      <Component />
     </Suspense>
   );
 };
