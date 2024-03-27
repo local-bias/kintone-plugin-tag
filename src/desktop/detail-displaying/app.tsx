@@ -1,4 +1,3 @@
-import styled from '@emotion/styled';
 import { Chip } from '@mui/material';
 import React, { FC } from 'react';
 
@@ -25,15 +24,4 @@ const Component: FC<Props> = ({ fieldId, initialValue, viewId }) => (
   </div>
 );
 
-const StyledComponent = styled(Component)`
-  display: flex;
-  margin-top: 0.5rem;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-
-  > a > div {
-    cursor: pointer;
-  }
-`;
-
-export default StyledComponent;
+export default Component;
